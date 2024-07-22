@@ -51,8 +51,7 @@ model as we train.
 
 
 ### Visuals: Wireframes Links to an external site. /Sketches of the interface or the menu driven program
-- Web app that displays a text box where users input email text and get a spam/not spam
-classification result
+Access the visuals server here http://127.0.0.1:5000
 
 
 ### Strategy: Preliminary algorithms or data structures you may want to implement
