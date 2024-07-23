@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "mock_backend.py", "use": "@vercel/python" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "mock_backend.py" }
+  ]
+}
+
