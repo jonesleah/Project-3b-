@@ -34,7 +34,7 @@ large volume of emails efficiently and provide clear results.
 
 
 ### Data: Public data set we will be using and the link to the public data set
-- Spam Detection: The Enron email dataset for spam detection
+The Enron email dataset for spam detection
 (https://www.kaggle.com/datasets/wcukierski/enron-email-dataset/suggestions?status=pending&y
 ourSuggestions=true)
 
@@ -47,15 +47,16 @@ model as we train.
 - pandas library for DataFrame use
 - NLTK for natural language processing (NLP) of the email dataset
 - Basic frontend (HTML/CSS/JavaScript)
-- Deploy application on a platform like Heroku
+- Deploy application on Vercel
 
 
 ### Visuals: Wireframes Links to an external site. /Sketches of the interface or the menu driven program
-Access the visuals server here http://127.0.0.1:5000
+- Access the visuals server here http://127.0.0.1:5000
+- Access the Vercel deployment here https://project-3b.vercel.app/
 
 
 ### Strategy: Preliminary algorithms or data structures you may want to implement
-- Spam Detection; Compare Naive Bayes classifier with Support Vector Machines
+- Compare Naive Bayes classifier with Support Vector Machines
 - Naive Bayes Classifier: A probabilistic classifier based on applying Bayes' theorem with strong
 (naive) independence assumptions.
 - Support Vector Machine (SVM): A supervised learning algorithm that can classify data by finding
