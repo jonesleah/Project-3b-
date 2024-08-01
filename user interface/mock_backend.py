@@ -26,7 +26,7 @@ def classify():
 
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    return app.send_static_file('static/index.html')
 
 @app.route('/<path:filename>')
 def static_files(filename):
