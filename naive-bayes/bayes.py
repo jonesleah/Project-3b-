@@ -1,6 +1,6 @@
 import csv
-import string
 import re
+from collections import defaultdict
 
 
 def load_from_csv(path):
@@ -28,14 +28,16 @@ def split(data):
     return normal, spam
 
 def tokenize(data):
-    all_words = []
+    word_count = defaultdict(int)
 
     for i in range(len(data)):
         text = re.sub(r'[^a-zA-Z\s]','', data[i])
         words = text.lower().split()
-        all_words.extend(words)
+        
+        for word in words:
+            word_count[word] += 1
     
-    return all_words
+    return word_count
 
 def main():
     data = load_from_csv("../datasets/spam.csv")
@@ -45,8 +47,8 @@ def main():
     spam_words = tokenize(spam)
     normal_words = tokenize(normal)
 
-    print("Spam words: " ,spam_words[:1000])
-    print("Normal words: ", normal_words[:1000])
+    print("Spam words: " , dict(list(spam_words.items())[:100]))
+    print("Normal words: ", dict(list(normal_words.items())[:100]))
 
 
 if __name__ == "__main__":
