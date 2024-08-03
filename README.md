@@ -34,3 +34,8 @@ efficiency and security.
 
 
 ### How our code works
+
+
+### References
+- https://www2.aueb.gr/users/ion/data/enron-spam/
+- https://github.com/MWiechmann/enron_spam_data/raw/master/enron_spam_data.zip
