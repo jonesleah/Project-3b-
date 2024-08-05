@@ -90,7 +90,7 @@ def classifer(email, spam_p, normal_p, spam_words_p, normal_words_p):
 
 
 def main():
-    data = load_from_csv("../datasets/spam.csv")
+    data = load_from_csv("../../datasets/spam.csv")
     
     training_data, validation_data = slice_data(data, train_ratio=0.8)
 
