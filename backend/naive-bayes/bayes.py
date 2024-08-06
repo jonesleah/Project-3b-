@@ -140,25 +140,6 @@ def plot_message_counts(data):
     # Save plot to HTML
     fig.write_html('message_counts.html')
 
-def plot_word_frequency_distribution(normal_counts, spam_counts):
-    # Convert counts to DataFrame
-    normal_df = pd.DataFrame(list(normal_counts.values()), columns=['Count'])
-    spam_df = pd.DataFrame(list(spam_counts.values()), columns=['Count'])
-
-    # Plot frequency distribution for normal (ham)
-    fig_normal_dist = go.Figure()
-    fig_normal_dist.add_trace(go.Histogram(x=normal_df['Count'], nbinsx=50, name='Normal'))
-    fig_normal_dist.update_layout(title='Word Frequency Distribution in Ham Messages', xaxis_title='Frequency', yaxis_title='Count')
-
-    # Plot frequency distribution for spam
-    fig_spam_dist = go.Figure()
-    fig_spam_dist.add_trace(go.Histogram(x=spam_df['Count'], nbinsx=50, name='Spam'))
-    fig_spam_dist.update_layout(title='Word Frequency Distribution in Spam Messages', xaxis_title='Frequency', yaxis_title='Count')
-
-    # Save plots to HTML
-    fig_normal_dist.write_html('word_frequency_distribution_normal.html')
-    fig_spam_dist.write_html('word_frequency_distribution_spam.html')
-
 def main():
     data = load_from_csv("enron_spam_data.csv")
     
