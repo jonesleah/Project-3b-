@@ -25,12 +25,10 @@ efficiency and security.
 - pandas library for DataFrame use
 - NLTK for natural language processing (NLP) of the email dataset
 - Basic frontend (HTML/CSS/JavaScript)
-- Deploy application on Vercel
 
 
 ### Visuals: User interface
-- Access the visuals server here http://127.0.0.1:5000
-- Access the Vercel deployment here https://project-3b.vercel.app/
+- Access the prototype Vercel deployment here https://project-3b.vercel.app/
 
 
 ### How our code works
