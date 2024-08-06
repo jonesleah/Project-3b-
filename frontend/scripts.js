@@ -21,3 +21,16 @@ document.getElementById('stats-button').addEventListener('click', () => {
     else
         visible.style.display = 'none'
 });
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const linksButton = document.getElementById('links-button');
+    const linksContainer = document.getElementById('links-container');
+
+    linksButton.addEventListener('click', () => {
+        if (linksContainer.style.display === 'none') {
+            linksContainer.style.display = 'block';
+        } else {
+            linksContainer.style.display = 'none';
+        }
+    });
+});

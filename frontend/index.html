@@ -19,19 +19,31 @@
         <div class="stats-container" id="visible">
             <div class="split-left-right">
                 <div class="one-model">
+                    <h2>Naive Bayes</h2>
+                    <img src="nb_cm.png">
+                    <h5>Accuracy: 98%</h5>
+                    <h5>Precision: 98%</h5>
+                </div>
+                <div class="one-model">
                     <h2>SVM</h2>
                     <img src="svm_cm.png">
                     <h5>Accuracy: 99%</h5>
                     <h5>Precision: 98%</h5>
                 </div>
-                <div class="one-model">
-                    <h2>Naive Bayes</h2>
-                    <img src="bayes_cm.png">
-                    <h5>Accuracy: xx%</h5>
-                    <h5>Precision: xx%</h5>
-                </div>
             </div>
         </div>
+
+        <button id="links-button" class="links-button">Processed Data Graphs</button>
+        <div class = "links-container" id="links-container" style="display: none;">
+            <h2>Processed Data Graphs</h2>
+            <ol>
+                <li><a href="message_counts.html">Message Counts</a></li>
+                <li><a href="t20normal_words.html">Top 20 Ham Words</a></li>
+                <li><a href="t20spam_words.html">Top 20 Spam Words</a></li>
+            </ol>
+        </div>
+
+
     </div>
     <script src="scripts.js"></script>
 </body>
