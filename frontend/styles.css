@@ -20,10 +20,36 @@ textarea {
 button {
     padding: 10px 20px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 #result {
     margin-top: 20px;
     font-size: 18px;
     font-weight: bold;
+}
+
+.stats-button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.stats-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    display: none;
+}
+
+.split-left-right {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.one-model {
+    text-align: center;
 }

@@ -13,3 +13,11 @@ document.getElementById('email-form').addEventListener('submit', async (event) =
     const result = await response.json();
     document.getElementById('result').innerText = `Result: ${result.classification}`;
 });
+
+document.getElementById('stats-button').addEventListener('click', () => {
+    const visible = document.getElementById('visible');
+    if (visible.style.display === 'none')
+        visible.style.display = 'block';
+    else
+        visible.style.display = 'none'
+});
