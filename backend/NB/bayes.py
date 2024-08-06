@@ -8,6 +8,37 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import plotly.graph_objects as go
 
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+
+from sklearn.metrics import roc_curve, roc_auc_score
+
+def plot_roc_curve(labels, probabilities):
+    fpr, tpr, _ = roc_curve(labels, probabilities, pos_label='spam')
+    auc = roc_auc_score(labels, probabilities)
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=fpr, y=tpr, mode='lines', name=f'AUC = {auc:.2f}'))
+    fig.add_trace(go.Scatter(x=[0, 1], y=[0, 1], mode='lines', name='Random Classifier', line=dict(dash='dash')))
+
+    fig.update_layout(title='ROC Curve', xaxis_title='False Positive Rate', yaxis_title='True Positive Rate')
+    fig.write_html('roc_curve.html')
+
+
+def plot_confusion_matrix(validation_data, predictions):
+    labels = [item[0] for item in validation_data]
+    cm = confusion_matrix(labels, predictions, labels=['ham', 'spam'])
+    
+    fig = go.Figure(data=go.Heatmap(
+                   z=cm,
+                   x=['Predicted Ham', 'Predicted Spam'],
+                   y=['Actual Ham', 'Actual Spam'],
+                   hoverongaps=False))
+    
+    fig.update_layout(title='Confusion Matrix', xaxis_title='Predicted Label', yaxis_title='True Label')
+    fig.write_html('confusion_matrix.html')
+
+
 def preprocess_file(input_path, output_path):
     # Preprocess the file to remove null bytes. 
     with open(input_path, 'rb') as infile, open(output_path, 'wb') as outfile:
@@ -140,6 +171,13 @@ def plot_message_counts(data):
     # Save plot to HTML
     fig.write_html('message_counts.html')
 
+def plot_accuracy(accuracy):
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=['Accuracy'], y=[accuracy], name='Accuracy'))
+    fig.update_layout(title='Model Accuracy', xaxis_title='Metric', yaxis_title='Accuracy')
+    fig.write_html('accuracy.html')
+
+
 def main():
     data = load_from_csv("enron_spam_data.csv")
     
@@ -151,9 +189,11 @@ def main():
 
     # Compare to validation data:
     correct_predictions = 0
+    predictions = []
 
     for label, email in validation_data:
         prediction = classifer(email, p_spam, p_ham, spam_word_probs, normal_word_probs)
+        predictions.append(prediction)
         if prediction == label:
             correct_predictions += 1
 
@@ -161,8 +201,13 @@ def main():
     print(f"Validation Accuracy: {accuracy * 100:.2f}%")
 
     # Plot and save word counts
+    plot_accuracy(accuracy*100)
+    plot_confusion_matrix(validation_data, predictions)
     plot_word_counts(normal_word_probs, spam_word_probs)
     plot_message_counts(data)
+
+
+
 
 if __name__ == "__main__":
     main()
