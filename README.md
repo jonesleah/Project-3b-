@@ -34,6 +34,7 @@ efficiency and security.
 
 
 ### How our code works
+Our project is focused on spam detection using machine learning algorithms. The frontend is developed using HTML, CSS, and JavaScript to allow users to input email content for spam detection. The backend, developed with Flask, handles API requests and processes the data using Python. The primary algorithm implemented is a Naive Bayes classifier, with plans to compare its performance to a Support Vector Machine (SVM) classifier. The data for the project is sourced from the Enron email dataset, which has been preprocessed to remove noise and improve accuracy. Our system aims to classify emails as spam or not spam with high precision and efficiency.
 
 
 ### References
