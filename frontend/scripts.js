@@ -11,7 +11,9 @@ document.getElementById('email-form').addEventListener('submit', async (event) =
     });
 
     const result = await response.json();
-    document.getElementById('result').innerText = `Result: ${result.classification}`;
+    document.getElementById('result').innerHTML =
+        `<p>SVC Result: ${result['SVC']}<p>
+         <p>Naive Bayes Result: ${result['NB']}<p>`;
 });
 
 document.getElementById('stats-button').addEventListener('click', () => {

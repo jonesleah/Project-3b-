@@ -33,11 +33,6 @@ def process_message(message):
 # Process email and run through model
 def run_nb(message):
     processed_message = process_message(message)
-<<<<<<< HEAD
-    classified = nb_model.predict(message)
-    return classified
-=======
     message_vector = vectorizer.transform([processed_message])
     classified = nb_model.predict(message_vector)[0]
     return classified
->>>>>>> d2104421dddb616cc84b9f2497d193d185d14f74
