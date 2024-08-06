@@ -49,11 +49,21 @@ button {
     align-items: center;
 }
 
-.one-model {
+.svm-model {
     width: 50%;
 }
 
-.one-model img {
+.svm-model img {
+    margin-top: -10px;
+    width: 120%;
+    height: auto;
+}
+
+.bayes-model {
+    width: 50%;
+}
+
+.bayes-model img {
     width: 100%;
     height: auto;
 }
