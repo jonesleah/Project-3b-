@@ -4,17 +4,38 @@ import math
 import random
 from collections import defaultdict
 
+import matplotlib.pyplot as plt
+import pandas as pd
+import plotly.graph_objects as go
+
+def preprocess_file(input_path, output_path):
+    # Preprocess the file to remove null bytes. 
+    with open(input_path, 'rb') as infile, open(output_path, 'wb') as outfile:
+        # Read the entire file and replace null bytes with nothing
+        content = infile.read().replace(b'\x00', b'')
+        outfile.write(content)
 
 def load_from_csv(path):
     data = []
-    with open(path, mode='r') as csvfile:
+
+    csv.field_size_limit(10**6)  # Set the limit to 1 MB because messages are too long
+
+     # Preprocess the file to remove null bytes
+    preprocessed_path = 'preprocessed_' + path
+    preprocess_file(path, preprocessed_path)
+
+    with open(preprocessed_path, mode='r') as csvfile:
         reader = csv.reader(csvfile)
 
-        next(reader) #skip header row
+        header = next(reader) #skip header row
+        label_idx = header.index("Spam/Ham")
+        text_idx = header.index("Message")
 
         for row in reader:
-            label, text = row # store each column in its respective variable
-            data.append((label, text)) # store each row as a tuple in my array
+            label = row[label_idx]
+            text = row[text_idx]
+            if label and text:
+                data.append((label, text))
         return data
 
 def slice_data(data, train_ratio = 0.8):
@@ -88,9 +109,58 @@ def classifer(email, spam_p, normal_p, spam_words_p, normal_words_p):
     # Compare probabilities to classify:
     return "spam" if spam_log_p > normal_log_p else "ham"
 
+def plot_word_counts(normal_counts, spam_counts):
+    # Convert counts to DataFrame for better handling
+    normal_df = pd.DataFrame(list(normal_counts.items()), columns=['Word', 'Count']).sort_values(by='Count', ascending=False)
+    spam_df = pd.DataFrame(list(spam_counts.items()), columns=['Word', 'Count']).sort_values(by='Count', ascending=False)
+
+    # Plot Normal Words
+    fig_normal = go.Figure()
+    fig_normal.add_trace(go.Bar(x=normal_df['Word'][:20], y=normal_df['Count'][:20], name='Normal'))
+    fig_normal.update_layout(title='Top 20 Words in Ham Messages', xaxis_title='Word', yaxis_title='Count')
+
+    # Plot Spam Words
+    fig_spam = go.Figure()
+    fig_spam.add_trace(go.Bar(x=spam_df['Word'][:20], y=spam_df['Count'][:20], name='Spam'))
+    fig_spam.update_layout(title='Top 20 Words in Spam Messages', xaxis_title='Word', yaxis_title='Count')
+
+    # Save plots to HTML
+    fig_normal.write_html('normal_words.html')
+    fig_spam.write_html('spam_words.html')
+
+def plot_message_counts(data):
+    # Count the number of spam and ham messages
+    labels = [item[0] for item in data]
+    counts = {'ham': labels.count('ham'), 'spam': labels.count('spam')}
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=list(counts.keys()), y=list(counts.values()), name='Messages'))
+    fig.update_layout(title='Number of Spam vs Ham Messages', xaxis_title='Message Type', yaxis_title='Count')
+
+    # Save plot to HTML
+    fig.write_html('message_counts.html')
+
+def plot_word_frequency_distribution(normal_counts, spam_counts):
+    # Convert counts to DataFrame
+    normal_df = pd.DataFrame(list(normal_counts.values()), columns=['Count'])
+    spam_df = pd.DataFrame(list(spam_counts.values()), columns=['Count'])
+
+    # Plot frequency distribution for normal (ham)
+    fig_normal_dist = go.Figure()
+    fig_normal_dist.add_trace(go.Histogram(x=normal_df['Count'], nbinsx=50, name='Normal'))
+    fig_normal_dist.update_layout(title='Word Frequency Distribution in Ham Messages', xaxis_title='Frequency', yaxis_title='Count')
+
+    # Plot frequency distribution for spam
+    fig_spam_dist = go.Figure()
+    fig_spam_dist.add_trace(go.Histogram(x=spam_df['Count'], nbinsx=50, name='Spam'))
+    fig_spam_dist.update_layout(title='Word Frequency Distribution in Spam Messages', xaxis_title='Frequency', yaxis_title='Count')
+
+    # Save plots to HTML
+    fig_normal_dist.write_html('word_frequency_distribution_normal.html')
+    fig_spam_dist.write_html('word_frequency_distribution_spam.html')
 
 def main():
-    data = load_from_csv("../../datasets/spam.csv")
+    data = load_from_csv("enron_spam_data.csv")
     
     training_data, validation_data = slice_data(data, train_ratio=0.8)
 
@@ -109,7 +179,9 @@ def main():
     accuracy = correct_predictions / len(validation_data)
     print(f"Validation Accuracy: {accuracy * 100:.2f}%")
 
-
+    # Plot and save word counts
+    plot_word_counts(normal_word_probs, spam_word_probs)
+    plot_message_counts(data)
 
 if __name__ == "__main__":
     main()
