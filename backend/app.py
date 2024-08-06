@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, send_from_directory
 import os
 from SVM.svc import run_svc
+from NB.nb import run_nb
 
 app = Flask(__name__, static_folder='../frontend')
 
@@ -16,6 +17,10 @@ def classify():
 
     # Call both classifiers and print each result
     svc_result = run_svc(email_content)
+
+    # NAIVE BAYES CLASSIFIER -- not sure how to integrate this
+    nb_result = run_nb(email_content)
+
     if svc_result == 0:
         return jsonify({'classification': 'Not Spam'})
     else:
