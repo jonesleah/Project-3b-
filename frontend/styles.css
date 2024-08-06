@@ -38,7 +38,6 @@ button {
 
 .stats-container {
     margin-top: 10px;
-    margin-bottom: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
     display: none;
@@ -51,5 +50,10 @@ button {
 }
 
 .one-model {
-    text-align: center;
+    width: 50%;
+}
+
+.one-model img {
+    width: 100%;
+    height: auto;
 }
