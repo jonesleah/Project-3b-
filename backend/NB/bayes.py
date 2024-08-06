@@ -178,7 +178,25 @@ def plot_accuracy(accuracy):
     fig.write_html('accuracy.html')
 
 
-def main():
+def run_naive_bayes(message):
+    classified = 0
+    data = load_from_csv("enron_spam_data.csv")
+    
+    training_data, validation_data = slice_data(data, train_ratio=0.8)
+
+    normal_train, spam_train = split(training_data)
+
+    p_spam, p_ham, spam_word_probs, normal_word_probs = likelihoods(normal_train, spam_train)
+    prediction = classifer(message, p_spam, p_ham, spam_word_probs, normal_word_probs)
+    
+    if prediction == "spam":
+        classified = 1
+    else:
+        classifed = 0
+    
+    return classified
+
+def test():
     data = load_from_csv("enron_spam_data.csv")
     
     training_data, validation_data = slice_data(data, train_ratio=0.8)
@@ -207,7 +225,12 @@ def main():
     plot_message_counts(data)
 
 
-
+def main():
+    val = run_naive_bayes("Do you want to buy this item for four dollars? Just click the link here!")
+    if val == 1:
+        print("spam")
+    else:
+        print("ham")
 
 if __name__ == "__main__":
     main()
