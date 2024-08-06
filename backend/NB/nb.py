@@ -5,11 +5,14 @@ import nltk
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
+from sklearn.feature_extraction.text import CountVectorizer
 nltk.download("stopwords")
 
 # Load NB Model:
-nb_path = os.path.join(os.path.dirname(__file__), "../naive-bayes/nb_model.pkl")
+nb_path = os.path.join(os.path.dirname(__file__), "../NB/nb_model.pkl")
+nb_vectorizer_path = os.path.join(os.path.dirname(__file__), "../NB/count_vectorizer.pkl")
 nb_model = joblib.load(nb_path)
+vectorizer = joblib.load(nb_vectorizer_path)
 
 # Message processor:
 def process_message(message):
@@ -28,5 +31,6 @@ def process_message(message):
 # Process email and run through model
 def run_nb(message):
     processed_message = process_message(message)
-    classified = nb_model.predict(message)
+    message_vector = vectorizer.transform([processed_message])
+    classified = nb_model.predict(message_vector)[0]
     return classified
