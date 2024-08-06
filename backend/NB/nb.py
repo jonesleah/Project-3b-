@@ -5,11 +5,13 @@ import nltk
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
+
 nltk.download("stopwords")
 
 # Load NB Model:
 nb_path = os.path.join(os.path.dirname(__file__), "../naive-bayes/nb_model.pkl")
 nb_model = joblib.load(nb_path)
+
 
 # Message processor:
 def process_message(message):
@@ -24,6 +26,7 @@ def process_message(message):
     ps = PorterStemmer()
     message = [ps.stem(word) for word in message]
     return " ".join(message)
+
 
 # Process email and run through model
 def run_nb(message):
