@@ -7,6 +7,7 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
 nltk.download("stopwords")
+nltk.download('punkt')
 # Load SVC models
 svc_path = os.path.join(os.path.dirname(__file__), '../SVM/svc_model.pkl')
 svc_vectorizer_path = os.path.join(os.path.dirname(__file__), '../SVM/tfidf_vectorizer.pkl')
