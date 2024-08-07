@@ -40,13 +40,21 @@ efficiency and security.
 
 ### Requirements:
 Flask~=3.0.3
+
 nltk~=3.8.1
+
 scikit-learn~=1.2.2
+
 joblib~=1.4.2
+
 matplotlib~=3.9.0
+
 pandas~=2.2.2
+
 plotly~=5.23.0
+
 numpy~=1.23.5
+
 gunicorn
    
 
