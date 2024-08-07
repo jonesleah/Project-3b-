@@ -62,6 +62,7 @@ gunicorn
 
 ### Visuals: User interface
 - Access the prototype Render deployment here: https://emailspamdetector-soly.onrender.com/
+- PLEASE NOTE: This might run slower than shown on video! This is a free hosting service...
 
 
 ### How our code works
