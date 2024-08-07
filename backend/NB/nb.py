@@ -7,6 +7,7 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 nltk.download("stopwords")
+nltk.download('punkt')
 
 # Load NB Model:
 nb_path = os.path.join(os.path.dirname(__file__), "../NB/nb_model.pkl")
