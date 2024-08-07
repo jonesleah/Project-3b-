@@ -1,5 +1,5 @@
 ## DEPLOYED SITE - https://emailspamdetector-soly.onrender.com/
-*Render's free tier spins down with inactivity; requests may be delayed up to 50 seconds*
+*Render's free tier spins down with inactivity; requests may be delayed by up to 50 seconds*
 
 ## PROJECT REPORT- https://docs.google.com/document/d/1jqUHO3-qHthq0iyGooUrRAs2Rn_KzHBKRuaVYPjlO0w/edit?usp=sharing
 
