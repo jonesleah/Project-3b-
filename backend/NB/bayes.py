@@ -4,39 +4,39 @@ import math
 import random
 from collections import defaultdict
 
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import pandas as pd
-import plotly.graph_objects as go
+#import plotly.graph_objects as go
 
 from sklearn.metrics import confusion_matrix
-import seaborn as sns
+#import seaborn as sns
 
-from sklearn.metrics import roc_curve, roc_auc_score
+# from sklearn.metrics import roc_curve, roc_auc_score
 
-def plot_roc_curve(labels, probabilities):
-    fpr, tpr, _ = roc_curve(labels, probabilities, pos_label='spam')
-    auc = roc_auc_score(labels, probabilities)
+#def plot_roc_curve(labels, probabilities):
+#    fpr, tpr, _ = roc_curve(labels, probabilities, pos_label='spam')
+#    auc = roc_auc_score(labels, probabilities)
+#
+#    fig = go.Figure()
+#    fig.add_trace(go.Scatter(x=fpr, y=tpr, mode='lines', name=f'AUC = {auc:.2f}'))
+#    fig.add_trace(go.Scatter(x=[0, 1], y=[0, 1], mode='lines', name='Random Classifier', line=dict(dash='dash')))
+#
+#    fig.update_layout(title='ROC Curve', xaxis_title='False Positive Rate', yaxis_title='True Positive Rate')
+#    fig.write_html('roc_curve.html')
 
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=fpr, y=tpr, mode='lines', name=f'AUC = {auc:.2f}'))
-    fig.add_trace(go.Scatter(x=[0, 1], y=[0, 1], mode='lines', name='Random Classifier', line=dict(dash='dash')))
 
-    fig.update_layout(title='ROC Curve', xaxis_title='False Positive Rate', yaxis_title='True Positive Rate')
-    fig.write_html('roc_curve.html')
-
-
-def plot_confusion_matrix(validation_data, predictions):
-    labels = [item[0] for item in validation_data]
-    cm = confusion_matrix(labels, predictions, labels=['ham', 'spam'])
+# def plot_confusion_matrix(validation_data, predictions):
+#     labels = [item[0] for item in validation_data]
+#     cm = confusion_matrix(labels, predictions, labels=['ham', 'spam'])
     
-    fig = go.Figure(data=go.Heatmap(
-                   z=cm,
-                   x=['Predicted Ham', 'Predicted Spam'],
-                   y=['Actual Ham', 'Actual Spam'],
-                   hoverongaps=False))
+#     fig = go.Figure(data=go.Heatmap(
+#                    z=cm,
+#                    x=['Predicted Ham', 'Predicted Spam'],
+#                    y=['Actual Ham', 'Actual Spam'],
+#                    hoverongaps=False))
     
-    fig.update_layout(title='Confusion Matrix', xaxis_title='Predicted Label', yaxis_title='True Label')
-    fig.write_html('confusion_matrix.html')
+#     fig.update_layout(title='Confusion Matrix', xaxis_title='Predicted Label', yaxis_title='True Label')
+#     fig.write_html('confusion_matrix.html')
 
 
 def preprocess_file(input_path, output_path):
@@ -140,42 +140,42 @@ def classifer(email, spam_p, normal_p, spam_words_p, normal_words_p):
     # Compare probabilities to classify:
     return "spam" if spam_log_p > normal_log_p else "ham"
 
-def plot_word_counts(normal_counts, spam_counts):
-    # Convert counts to DataFrame for better handling
-    normal_df = pd.DataFrame(list(normal_counts.items()), columns=['Word', 'Count']).sort_values(by='Count', ascending=False)
-    spam_df = pd.DataFrame(list(spam_counts.items()), columns=['Word', 'Count']).sort_values(by='Count', ascending=False)
+# def plot_word_counts(normal_counts, spam_counts):
+#     # Convert counts to DataFrame for better handling
+#     normal_df = pd.DataFrame(list(normal_counts.items()), columns=['Word', 'Count']).sort_values(by='Count', ascending=False)
+#     spam_df = pd.DataFrame(list(spam_counts.items()), columns=['Word', 'Count']).sort_values(by='Count', ascending=False)
 
-    # Plot Normal Words
-    fig_normal = go.Figure()
-    fig_normal.add_trace(go.Bar(x=normal_df['Word'][:20], y=normal_df['Count'][:20], name='Normal'))
-    fig_normal.update_layout(title='Top 20 Words in Ham Messages', xaxis_title='Word', yaxis_title='Count')
+#     # Plot Normal Words
+#     fig_normal = go.Figure()
+#     fig_normal.add_trace(go.Bar(x=normal_df['Word'][:20], y=normal_df['Count'][:20], name='Normal'))
+#     fig_normal.update_layout(title='Top 20 Words in Ham Messages', xaxis_title='Word', yaxis_title='Count')
 
-    # Plot Spam Words
-    fig_spam = go.Figure()
-    fig_spam.add_trace(go.Bar(x=spam_df['Word'][:20], y=spam_df['Count'][:20], name='Spam'))
-    fig_spam.update_layout(title='Top 20 Words in Spam Messages', xaxis_title='Word', yaxis_title='Count')
+#     # Plot Spam Words
+#     fig_spam = go.Figure()
+#     fig_spam.add_trace(go.Bar(x=spam_df['Word'][:20], y=spam_df['Count'][:20], name='Spam'))
+#     fig_spam.update_layout(title='Top 20 Words in Spam Messages', xaxis_title='Word', yaxis_title='Count')
 
-    # Save plots to HTML
-    fig_normal.write_html('normal_words.html')
-    fig_spam.write_html('spam_words.html')
+#     # Save plots to HTML
+#     fig_normal.write_html('normal_words.html')
+#     fig_spam.write_html('spam_words.html')
 
-def plot_message_counts(data):
-    # Count the number of spam and ham messages
-    labels = [item[0] for item in data]
-    counts = {'ham': labels.count('ham'), 'spam': labels.count('spam')}
+# def plot_message_counts(data):
+#     # Count the number of spam and ham messages
+#     labels = [item[0] for item in data]
+#     counts = {'ham': labels.count('ham'), 'spam': labels.count('spam')}
 
-    fig = go.Figure()
-    fig.add_trace(go.Bar(x=list(counts.keys()), y=list(counts.values()), name='Messages'))
-    fig.update_layout(title='Number of Spam vs Ham Messages', xaxis_title='Message Type', yaxis_title='Count')
+#     fig = go.Figure()
+#     fig.add_trace(go.Bar(x=list(counts.keys()), y=list(counts.values()), name='Messages'))
+#     fig.update_layout(title='Number of Spam vs Ham Messages', xaxis_title='Message Type', yaxis_title='Count')
 
-    # Save plot to HTML
-    fig.write_html('message_counts.html')
+#     # Save plot to HTML
+#     fig.write_html('message_counts.html')
 
-def plot_accuracy(accuracy):
-    fig = go.Figure()
-    fig.add_trace(go.Bar(x=['Accuracy'], y=[accuracy], name='Accuracy'))
-    fig.update_layout(title='Model Accuracy', xaxis_title='Metric', yaxis_title='Accuracy')
-    fig.write_html('accuracy.html')
+# def plot_accuracy(accuracy):
+#     fig = go.Figure()
+#     fig.add_trace(go.Bar(x=['Accuracy'], y=[accuracy], name='Accuracy'))
+#     fig.update_layout(title='Model Accuracy', xaxis_title='Metric', yaxis_title='Accuracy')
+#     fig.write_html('accuracy.html')
 
 
 def run_naive_bayes(message):
@@ -226,7 +226,7 @@ def test():
 
 
 def main():
-    val = run_naive_bayes("Do you want to buy this item for four dollars? Just click the link here!")
+    val = run_naive_bayes("Hello, this is a test to see if it works")
     if val == 1:
         print("spam")
     else:

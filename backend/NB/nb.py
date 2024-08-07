@@ -35,4 +35,9 @@ def run_nb(message):
     processed_message = process_message(message)
     message_vector = vectorizer.transform([processed_message])
     classified = nb_model.predict(message_vector)[0]
+    if (classified == "spam"):
+        classified = 1
+    else:
+        classified = 0
+        
     return classified
