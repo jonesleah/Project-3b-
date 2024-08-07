@@ -37,6 +37,7 @@ efficiency and security.
 4. Navigate to location specified by terminal (most likely http://127.0.0.1:5000) and open in browser
 5. Keep program running while interacting with user interface
 
+
 ### Requirements:
 Flask~=3.0.3
 nltk~=3.8.1
@@ -56,8 +57,10 @@ gunicorn
 ### How our code works
 Our project is focused on spam detection using machine learning algorithms. The frontend is developed using HTML, CSS, and JavaScript to allow users to input email content for spam detection. The backend, developed with Flask, handles API requests and processes the data using Python. The primary algorithm implemented is a Naive Bayes classifier, with plans to compare its performance to a Support Vector Machine (SVM) classifier. The data for the project is sourced from the Enron email dataset, which has been preprocessed to remove noise and improve accuracy. Our system aims to classify emails as spam or not spam with high precision and efficiency.
 
+
 ### Example Prompts:
 **Ham** (Non-Spam)
+
 Hi! Looking forward to meeting you later today! Thanks.
 
 Can we reschedule our meeting to tomorrow afternoon? I have a conflict with the original time and would like to discuss the project updates before the end of the week. Let me know if this works for you, and I’ll send a new calendar invite.
@@ -65,6 +68,7 @@ Can we reschedule our meeting to tomorrow afternoon? I have a conflict with the 
 Do you have the latest sales report ready? We need it for the upcoming meeting with the board of directors. Make sure all the data is up-to-date and accurate. Let me know if you need any assistance with the report.
 
 **Spam**
+
 This is not a scam! You've been chosen to receive a $500 Amazon gift card.
 
 You have been selected for a free iPhone 14. Claim yours by clicking this link and completing a short survey. This exclusive offer is available only to a few lucky individuals, so don't wait. Get your brand-new iPhone 14 now!
