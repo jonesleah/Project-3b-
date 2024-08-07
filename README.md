@@ -1,5 +1,7 @@
 ## PROJECT REPORT- https://docs.google.com/document/d/1jqUHO3-qHthq0iyGooUrRAs2Rn_KzHBKRuaVYPjlO0w/edit?usp=sharing
 
+## DEPLOYED SITE - https://emailspamdetector-soly.onrender.com/
+
 ### Team Name
 Final Project Group 5
 
