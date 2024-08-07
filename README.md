@@ -31,7 +31,7 @@ efficiency and security.
   
 
 ### Running this locally
-1. Ensure all dependencies are installed (should be outlined in requirements.txt of backend)
+1. Ensure all dependencies are installed (in `Project-3b-/backend/requirements.txt`)
 2. Navigate to `Project-3b-/backend/`
 3. Run `python3 app.py`
 4. Navigate to location specified by terminal (most likely http://127.0.0.1:5000) and open in browser
