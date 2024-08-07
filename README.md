@@ -58,13 +58,17 @@ Our project is focused on spam detection using machine learning algorithms. The 
 
 ### Example Prompts:
 **Ham** (Non-Spam)
-Hi! Looking forward to meeting you later today! Thanks.\
-Can we reschedule our meeting to tomorrow afternoon? I have a conflict with the original time and would like to discuss the project updates before the end of the week. Let me know if this works for you, and I’ll send a new calendar invite.\
-Do you have the latest sales report ready? We need it for the upcoming meeting with the board of directors. Make sure all the data is up-to-date and accurate. Let me know if you need any assistance with the report.\
+Hi! Looking forward to meeting you later today! Thanks.
+
+Can we reschedule our meeting to tomorrow afternoon? I have a conflict with the original time and would like to discuss the project updates before the end of the week. Let me know if this works for you, and I’ll send a new calendar invite.
+
+Do you have the latest sales report ready? We need it for the upcoming meeting with the board of directors. Make sure all the data is up-to-date and accurate. Let me know if you need any assistance with the report.
 
 **Spam**
 This is not a scam! You've been chosen to receive a $500 Amazon gift card.
+
 You have been selected for a free iPhone 14. Claim yours by clicking this link and completing a short survey. This exclusive offer is available only to a few lucky individuals, so don't wait. Get your brand-new iPhone 14 now!
+
 Urgent! Your account has been compromised. Verify your identity by clicking here.
 
 
